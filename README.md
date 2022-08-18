@@ -4,7 +4,7 @@ npm install -D nodemon: installed nodemon as a developer dependency because my s
 alternative [ES6] syntax to import express
 import express from 'express'; 
 -->
-# PE-3445
+# Build a REST API using Node JS and Express
 
 This assessment was to cover lessons learnt from the Git and Javascript learning path.
 ## Project Description
