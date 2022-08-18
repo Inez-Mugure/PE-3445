@@ -9,8 +9,6 @@ const express = require('express');
 // reference the path of the data.json file
 const data = require("./data.json");
 
-const fs = require("fs");
-
 // Creating express app object 
 const app = express();
 
@@ -22,19 +20,7 @@ app.get('/', (req, res) => {
     res.send('Bill Payments')
 });
 
-// read and write json file using fs
-const readFile = async filePath => {
-    try {
-      const data = await fs.promises.readFile(filePath, 'utf8')
-      console.log("jsonData", data)
-      return data
-    }
-    catch(err) {
-      console.log(err)
-    }
-  }
-
-// Interact with files with fs
+// Interact with files using fs
 app.get('/api/bill_payments', async (req, res) => {  
     const filterData = data.bill_payments.filter((bill) => bill.amount > 0);
     res.json((filterData));   
