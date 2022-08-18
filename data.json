@@ -1,0 +1,48 @@
+{ 
+    "bill_payments": [
+        {
+            "id": "a5efcae5-f0d0-4cd0-a83c-29353c7a17d8",
+            "created_at": "7 Jul, 2022, 2:45 PM",
+            "user_id": "37430530-d9b1-11eb-9bd7-eb5ef583c4e4",
+            "status": "COMPLETED",
+            "amount": 2900,
+            "billder_id": "gabaxibox__cabletv__gotv",
+            "biller_name": "GOTV",
+            "biller_item_id": "gabaxibox__gotv__CTBSCAP0207",
+            "biller_item_name": "GOtv Jolli Bouquet"
+        },
+        {
+            "id": "5bf19079-092e-4d51-95f3-67d0c15c748d",
+            "created_at": "11 Aug, 2022, 6:55 PM",
+            "user_id": "c2f90530-0f0b-11ed-a23a-315e39830ccf",
+            "status": "COMPLETED",
+            "amount": 3500,
+            "billder_id": "gabaxibox__cabletv__startimes",
+            "biller_name": "StarTimes",
+            "biller_item_id": "gabaxibox__startimes__CTBSCAP03",
+            "biller_item_name": "StarTimes"
+        },
+        {
+            "id": "b240a214-ceaa-478f-b174-2f7ca82d8a35",
+            "created_at": "12 Aug, 2022, 9:05 AM",
+            "user_id": "4a1f76f0-e12f-11ea-9e49-891801b83606",
+            "status": "PENDING",
+            "amount": 1500,
+            "billder_id": "gabaxibox__cabletv__gotv",
+            "biller_name": "GOTV",
+            "biller_item_id": "gabaxibox__gotv__CTBSCAP0207",
+            "biller_item_name": "GOtv Jolli Bouquet"
+        },
+        {
+            "id": "dd57c78e-7d9d-4f5d-ba6b-34587aeed680",
+            "created_at": "10 Aug, 2022, 7:11 AM",
+            "user_id": "40562a30-2b9d-11ea-b835-255a5f94df01",
+            "status": "FAILED",
+            "amount": 0,
+            "billder_id": "gabaxibox__cabletv__dstv",
+            "biller_name": "DSTV",
+            "biller_item_id": "gabaxibox__dstv__CTBSCAP0103",
+            "biller_item_name": "DStv Compact"
+        }
+    ]
+}
