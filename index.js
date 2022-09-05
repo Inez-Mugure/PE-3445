@@ -40,6 +40,14 @@ app.get('/api/bill_payments/sorted-by-amount', async (req, res) => {
   res.json((data_2));
 })
 
+//defining an endpoint to return bills with property created at from earliest to latest
+app.get('/api/bill_payments/sorted-by-created-at', async (req, res) => {
+    data_2.bill_payments.sort((a, b) => {
+      return new Date(a.created_at).getTime() - new Date (b.created_at).getTime()
+    });
+    res.json((data_2));
+})
+
 // port
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on Port: ${port}`));
