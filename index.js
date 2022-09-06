@@ -5,6 +5,7 @@ importing packages
 
 // Requiring module
 const express = require('express');
+const Moment = require('moment');
 
 // reference the path of the .json file
 const data = require("./data.json");
@@ -42,10 +43,19 @@ app.get('/api/bill_payments/sorted-by-amount', async (req, res) => {
 
 //defining an endpoint to return bills with property created at from earliest to latest
 app.get('/api/bill_payments/sorted-by-created-at', async (req, res) => {
-    data_2.bill_payments.sort((a, b) => {
+  data_2.bill_payments.sort(
+    (a, b) =>
+      new Moment(a.created_at).format('X') -
+      new Moment(b.created_at).format('X')
+  );
+  console.log(data_2);
+  res.json((data_2));
+  
+/* solution without moment     
+  data_2.bill_payments.sort((a, b) => {
       return new Date(a.created_at).getTime() - new Date (b.created_at).getTime()
     });
-    res.json((data_2));
+    res.json((data_2)); */
 })
 
 // port
