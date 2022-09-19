@@ -3,61 +3,66 @@ common js syntax
 importing packages
  */
 
-// Requiring module
-const express = require('express');
+// Require the koa package 
+const Koa = require('koa');
+const Router = require('@koa/router');
+const bodyParser = require('koa-bodyparser');
 const Moment = require('moment');
+
+// Set up the koa app - create a Koa application instance using the constructor and new keyword
+const app = new Koa();
+const router = new Router(); 
+
+// middlewares
+app.use(bodyParser());
+
+// the parsed body will store in ctx.request.body
+// if nothing was parsed, body will be an empty object {}
+app.use(async (ctx) => {
+  ctx.body = ctx.request.body;
+});
 
 // reference the path of the .json file
 const data = require("./data.json");
 const data_2 = require("./data_2.json");
 
-// Set up the express app 
-const app = express();
-
-// middlewares
-app.use(express.json());
-
 // defining a route
-app.get('/', (req, res) => {
-    res.send('Bill Payments')
+router.get('PE-3445', '/', (ctx) => {
+    ctx.body('Bill Payments')
 });
 
 // testing endpoint
-app.get('/api/bill_payments/test', async (req, res) => {
-    res.send('Hello World, from express');
+router.get('/test', (ctx) => {
+    ctx.body('Hello World, from express');
 })
 
 // defining an endpoint to return bills with amount greater than 0
-app.get('/api/bill_payments', async (req, res) => {  
+router.get('router/bill_payments', (ctx) => {  
     const filterData = data.bill_payments.filter((bill) => bill.amount > 0);
-    res.json((filterData));   
+    ctx.body((filterData));   
 })
 
 // defining an endpoint to return bills with amount from smallest to greatest
-app.get('/api/bill_payments/sorted-by-amount', async (req, res) => {
+router.get('router/bill_payments/sorted-by-amount', (ctx) => {
   data_2.bill_payments.sort((a, b) => {
     return a.amount-b.amount
     });
-  res.json((data_2));
+  ctx.body((data_2));
 })
 
 //defining an endpoint to return bills with property created at from earliest to latest
-app.get('/api/bill_payments/sorted-by-created-at', async (req, res) => {
+router.get('router/bill_payments/sorted-by-created-at', (ctx) => {
   data_2.bill_payments.sort(
     (a, b) =>
       new Moment(a.created_at).format('X') -
       new Moment(b.created_at).format('X')
   );
   console.log(data_2);
-  res.json((data_2));
-  
-/* solution without moment     
-  data_2.bill_payments.sort((a, b) => {
-      return new Date(a.created_at).getTime() - new Date (b.created_at).getTime()
-    });
-    res.json((data_2)); */
-})
+  ctx.body((data_2));
 
+app.use(router.routes())
+  
 // port
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Listening on Port: ${port}`));
+app.listen(3000, function(){
+   console.log('Server running on https://localhost:3000')
+});
