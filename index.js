@@ -1,63 +1,29 @@
-/* 
-common js syntax
-importing packages
- */
+'use strict';
 
-// Requiring module
-const express = require('express');
+const Koa = require('koa');
+const Router = require('@koa/router');
+// const render = require('koa-ejs');
+// const path = require('path');
 const Moment = require('moment');
+const bodyParser = require('koa-bodyparser');
+
+const app = new Koa();
+const router = new Router();
+
+// middlewares
+app.use(bodyParser());
 
 // reference the path of the .json file
 const data = require("./data.json");
 const data_2 = require("./data_2.json");
 
-// Set up the express app 
-const app = express();
-
-// middlewares
-app.use(express.json());
-
-// defining a route
-app.get('/', (req, res) => {
-    res.send('Bill Payments')
+// tested this it is running successfully
+router.get('/', async (ctx) => {
+  ctx.body = data_2
 });
 
-// testing endpoint
-app.get('/api/bill_payments/test', async (req, res) => {
-    res.send('Hello World, from express');
-})
+app
+  .use(router.routes())
+  .use(router.allowedMethods());
 
-// defining an endpoint to return bills with amount greater than 0
-app.get('/api/bill_payments', async (req, res) => {  
-    const filterData = data.bill_payments.filter((bill) => bill.amount > 0);
-    res.json((filterData));   
-})
-
-// defining an endpoint to return bills with amount from smallest to greatest
-app.get('/api/bill_payments/sorted-by-amount', async (req, res) => {
-  data_2.bill_payments.sort((a, b) => {
-    return a.amount-b.amount
-    });
-  res.json((data_2));
-})
-
-//defining an endpoint to return bills with property created at from earliest to latest
-app.get('/api/bill_payments/sorted-by-created-at', async (req, res) => {
-  data_2.bill_payments.sort(
-    (a, b) =>
-      new Moment(a.created_at).format('X') -
-      new Moment(b.created_at).format('X')
-  );
-  console.log(data_2);
-  res.json((data_2));
-  
-/* solution without moment     
-  data_2.bill_payments.sort((a, b) => {
-      return new Date(a.created_at).getTime() - new Date (b.created_at).getTime()
-    });
-    res.json((data_2)); */
-})
-
-// port
-const port = process.env.PORT || 3000;
-app.listen(port, () => console.log(`Listening on Port: ${port}`));
+app.listen(3000);
