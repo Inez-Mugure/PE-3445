@@ -32,7 +32,7 @@ router.get('PE-3445', '/', (ctx) => {
 });
 
 // testing endpoint
-router.get('/test', (ctx) => {
+router.get('router/test', (ctx) => {
     ctx.body('Hello World, from express');
 })
 
@@ -65,4 +65,5 @@ app.use(router.routes())
 // port
 app.listen(3000, function(){
    console.log('Server running on https://localhost:3000')
+});
 });
