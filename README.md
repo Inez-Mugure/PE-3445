@@ -9,11 +9,30 @@ import express from 'express';
 This assessment was to cover lessons learnt from the Git and Javascript learning path.
 ## Project Description
 
-Created an endpoint called bill_payments
-served a json file data.json
-The expected file path is localhost:3000/api/bill_payments
-filtered the json data to only show bill payments with amount > 0
+assessment #1
 
+- create an endpoint called bill_payments
+- filter the json data to only show bill payments with amount > 0
+- The expected file path is http://localhost:3000/bill_payments
+
+assessment #2
+
+- create a 2nd endpoint called that returns bills with amount from smallest to greatest
+- the expected file path is http://localhost:3000/bill_payments/sorted-by-amount
+
+assessment #3
+
+- create an endpoint that returns bills with property created at from earliest to latest
+- use moment.js for this task
+- the expected file path is http://localhost:3000/bill_payments/sorted-by-created-at
+
+assessment #4
+- migrate the application from express to koa
+- tested the endpoint here http://localhost:3000/ 
 ## Installation
 
-dev dependency: nodemon
+- dev dependency: nodemon
+- install moment
+- install koa
+- install koa router
+- install koa ejs
